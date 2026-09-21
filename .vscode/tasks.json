@@ -1,0 +1,69 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1 · Install packages (npm install)",
+      "type": "shell",
+      "command": "npm install",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "2 · Create DB tables (drizzle-kit push)",
+      "type": "shell",
+      "command": "npx drizzle-kit push",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "3 · Run on laptop (npm run dev)",
+      "type": "shell",
+      "command": "npm run dev",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "4 · Run for MOBILE (same WiFi, 0.0.0.0)",
+      "type": "shell",
+      "command": "npx next dev -H 0.0.0.0 -p 3000",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Phone par kholo: http://<laptop-ka-IP>:3000"
+    },
+    {
+      "label": "5 · Show my laptop IP address",
+      "type": "shell",
+      "windows": { "command": "ipconfig" },
+      "linux": { "command": "hostname -I" },
+      "osx": { "command": "ipconfig getifaddr en0" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "6 · Public link for mobile (localtunnel)",
+      "type": "shell",
+      "command": "npx localtunnel --port 3000",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "Koi bhi network se khulne wala https link deta hai"
+    },
+    {
+      "label": "Production build + start",
+      "type": "shell",
+      "command": "npm run build && npx next start -H 0.0.0.0 -p 3000",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Reset database (fresh Suryanagar data)",
+      "type": "shell",
+      "command": "psql \"$DATABASE_URL\" -c \"truncate graph_nodes, graph_edges, hospitals, bed_requests, bed_events restart identity cascade;\"",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    }
+  ]
+}
